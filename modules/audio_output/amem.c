@@ -162,7 +162,8 @@ static void Stop (audio_output_t *aout)
 static int Start (audio_output_t *aout, audio_sample_format_t *fmt)
 {
     aout_sys_t *sys = aout->sys;
-    char format[5] = "S16N";
+    // char format[5] = "S16N";
+    char format[5] = "FL32";
     unsigned channels;
 
     if (aout_FormatNbChannels(fmt) == 0)
@@ -189,8 +190,8 @@ static int Start (audio_output_t *aout, audio_sample_format_t *fmt)
 
     /* Ensure that format is supported */
     if (fmt->i_rate == 0 || fmt->i_rate > AMEM_SAMPLE_RATE_MAX
-     || channels == 0 || channels > AOUT_CHAN_MAX
-     || strcmp(format, "S16N") /* TODO: amem-format */)
+     || channels == 0 || channels > AOUT_CHAN_MAX)
+     // || strcmp(format, "S16N") /* TODO: amem-format */)
     {
         msg_Err (aout, "format not supported: %s, %u channel(s), %u Hz",
                  format, channels, fmt->i_rate);
@@ -232,7 +233,8 @@ static int Start (audio_output_t *aout, audio_sample_format_t *fmt)
             vlc_assert_unreachable();
     }
 
-    fmt->i_format = VLC_CODEC_S16N;
+    // fmt->i_format = VLC_CODEC_S16N;
+    fmt->i_format = VLC_CODEC_FL32;
     fmt->channel_type = AUDIO_CHANNEL_TYPE_BITMAP;
     return VLC_SUCCESS;
 }
