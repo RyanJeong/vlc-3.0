@@ -654,6 +654,7 @@ static inline void *var_InheritAddress( vlc_object_t *obj, const char *name )
 
 VLC_API int var_InheritURational( vlc_object_t *, unsigned *num, unsigned *den, const char *var );
 #define var_InheritURational(a,b,c,d) var_InheritURational(VLC_OBJECT(a), b, c, d)
+#define var_InheritString(o, n) var_InheritString(VLC_OBJECT(o), n)
 
 #define var_GetInteger(a,b)   var_GetInteger( VLC_OBJECT(a),b)
 #define var_GetBool(a,b)   var_GetBool( VLC_OBJECT(a),b)
